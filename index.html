@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guessing Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="game-container">
+        <h2>GUESS GAME</h2>
+        <button class="start-button" onclick="startButton();">Start Game</button>
+
+        <div class="input-section hidden">
+            <input type="text" placeholder="Enter your guess" class="user-guess">
+            <button class="play-button" onclick="takeUserGuess();">Play</button>
+        </div>
+      
+          <p class="message"></p>
+      
+        <div class="extra-options hidden">
+            <button class= "more-trials-button" onclick="buyTrials();">Buy 4 More Trials</button>
+            <button class="quit-game-button" onclick="quitGame();">Quit Game</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
