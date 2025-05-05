@@ -17,7 +17,7 @@ Fix all the bugs
 //BONUS: There should be a try again
 //There should also be a UI
 
-let MAX_TRIES = 6;
+const MAX_TRIES = 6;
 
 let RANDOM_GUESS = 0;
 let user_trial = 1;
@@ -35,20 +35,24 @@ function startButton() {
     document.querySelector('.user-guess').value = '';
     document.querySelector('.input-section').classList.remove('hidden');
     document.querySelector('.extra-options').classList.add('hidden');
+    document.body.style.backgroundImage = ''; 
 }
 
 function takeUserGuess(){
     if(!gameStarted || gameOver){
         return;
     }
+
     let userGuess = parseInt(document.querySelector('.user-guess').value);
     const message = document.querySelector('.message');
+
+
     console.log(`user guess: ${userGuess}`);
     console.log(`User trial: ${user_trial}`);
 
     if (userGuess == RANDOM_GUESS) {
-        message.innerHTML = "CONGRATULATIONS,  You WIN!! \nGame has ended";
-        quitGame();
+        message.innerHTML = "🎉🎉CONGRATULATIONS,  You WIN!! 🎉 \nGame has ended";
+        gameOver = true;
         return;
     } else if (userGuess < RANDOM_GUESS) {
         message.innerHTML = "TOO LOW, Please Try Again";
@@ -60,9 +64,10 @@ function takeUserGuess(){
 
     if (user_trial > MAX_TRIES){
         showExtraOptions();
+        document.querySelector('.message').innerHTML = `Sorry, you lost. The answer was ${RANDOM_GUESS}`;
     }
 
-    userGuess = '';
+    document.querySelector('.user-guess').value = '';
 }
 
 function showExtraOptions(){
@@ -70,14 +75,13 @@ function showExtraOptions(){
     document.querySelector('.extra-options').classList.remove('hidden');
 }
 
-function buyTrials(){
-    MAX_TRIES +=4;
-    gameOver = false;
-    document.querySelector('.message').innerHTML = 'You bought 4 trials. \nKeep going!!';
+function quitGame(){
+    gameOver = true;
+    document.querySelector('.input-section').classList.remove('hidden');
     document.querySelector('.extra-options').classList.add('hidden');
 }
 
-function quitGame(){
-    gameOver = true;
-    message.innerText = `Sorry, you lost. The answer was ${RANDOM_GUESS}`;
+function restartGame(){
+    startButton();
+    user_trial = 1;
 }
